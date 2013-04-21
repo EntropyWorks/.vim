@@ -9,10 +9,12 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " vim-scripts repos
+Bundle 'BrianAker/shell-commands'
 Bundle 'EasyGrep'
-Bundle 'EasyGrepFileAssociations'
-Bundle 'shell-commands'
-Bundle 'a'
+Bundle 'a.vim'
+Bundle 'git-commit'
+Bundle 'fugitive.vim'
+Bundle 'git://repo.or.cz/vcscommand'
 
 filetype plugin indent on     " required!
 
