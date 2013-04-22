@@ -6,8 +6,12 @@
 VPATH= ${HOME}
 
 .PHONY: all
-all: .vimrc syntax/m4.vim bundle/vundle
+all: syntax/m4.vim bundle/vundle
+
+.PHONY: install
+install: | all .vimrc
 	@vim +BundleInstall +qall
+
 
 bundle/vundle:
 	git clone https://github.com/gmarik/vundle.git $(HOME)/.vim/bundle/vundle
