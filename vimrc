@@ -14,6 +14,7 @@ Bundle 'EasyGrep'
 Bundle 'a.vim'
 Bundle 'git-commit'
 Bundle 'fugitive.vim'
+Bundle 'scrooloose/nerdtree'
 Bundle 'git://repo.or.cz/vcscommand'
 
 filetype plugin indent on     " required!
@@ -43,7 +44,8 @@ set ruler
 set ai
 set si
 set nosol
-set cino=(4
+"set cino=(4
+set cino+=(0
 set mps+=<:>
 if has("autocmd")
 " Added for cpp
