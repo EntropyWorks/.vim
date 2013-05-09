@@ -1,6 +1,8 @@
 # vim:ft=automake
 #
 
+HOME:= $(shell cd ~; pwd)
+
 .SUFFIXES:
 
 VPATH= ${HOME}
@@ -9,14 +11,14 @@ VPATH= ${HOME}
 all: syntax/m4.vim bundle/vundle
 
 .PHONY: install
-install: | all .vimrc
+install: | all ${HOME}/.vimrc
 	@vim +BundleInstall +qall
 
 
 bundle/vundle:
 	git clone https://github.com/gmarik/vundle.git $(HOME)/.vim/bundle/vundle
 	
-.vimrc:
+${HOME}/.vimrc: vimrc
 	-@ln -s $(HOME)/.vim/vimrc $(HOME)/.vimrc
 
 syntax/m4.vim:
