@@ -13,7 +13,11 @@ all: syntax/m4.vim bundle/vundle
 .PHONY: install
 install: | all ${HOME}/.vimrc
 	@vim +BundleInstall +qall
+	$(MAKE) check
 
+.PHONY: check
+check:
+	@diff ~/.vimrc  vimrc
 
 bundle/vundle:
 	git clone https://github.com/gmarik/vundle.git $(HOME)/.vim/bundle/vundle
