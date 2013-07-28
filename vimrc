@@ -17,6 +17,7 @@ Bundle 'fugitive.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'git@github.com:tpope/vim-markdown.git'
+Bundle 'yaml.vim'
 
 filetype plugin indent on     " required!
 
