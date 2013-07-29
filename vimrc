@@ -20,7 +20,7 @@ Bundle 'git@github.com:tpope/vim-markdown.git'
 Bundle 'yaml.vim'
 Bundle 'c.vim'
 Bundle 'cpp.vim'
-Bundle 'vim-ruby'
+Bundle 'ruby.vim'
 
 filetype plugin indent on     " required!
 
