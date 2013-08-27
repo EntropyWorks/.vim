@@ -21,6 +21,11 @@ Bundle 'yaml.vim'
 Bundle 'c.vim'
 Bundle 'cpp.vim'
 Bundle 'ruby.vim'
+Bundle 'git@github.com:/jamessan/vim-gnupg'
+Bundle 'git@github.com:/tomtom/checksyntax_vim'
+Bundle 'gundo.vim'
+Bundle 'salt.vim'
+Bundle 'tabman.vim'
 
 filetype plugin indent on     " required!
 
