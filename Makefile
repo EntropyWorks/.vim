@@ -13,6 +13,7 @@ all: syntax/m4.vim bundle/vundle
 .PHONY: install
 install: | all ${HOME}/.vimrc
 	@vim +BundleInstall +qall
+	@vim +BundleClean! +qall
 	$(MAKE) check
 
 .PHONY: check

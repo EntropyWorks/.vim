@@ -17,15 +17,19 @@ Bundle 'fugitive.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'git@github.com:tpope/vim-markdown.git'
-Bundle 'yaml.vim'
 Bundle 'c.vim'
 Bundle 'cpp.vim'
 Bundle 'ruby.vim'
 Bundle 'git@github.com:/jamessan/vim-gnupg'
 Bundle 'git@github.com:/tomtom/checksyntax_vim'
-Bundle 'gundo.vim'
-Bundle 'salt.vim'
+Bundle 'Gundo'
+Bundle 'git@github.com:saltstack/salt-vim.git'
 Bundle 'tabman.vim'
+Bundle 'lodgeit.vim'
+Bundle 'snipMate'
+Bundle 'git@github.com:ingydotnet/yaml-vim.git'
+Bundle 'git@github.com:tpope/vim-pastie.git'
+Bundle 'git://github.com/seveas/bind.vim.git'
 
 filetype plugin indent on     " required!
 
@@ -98,3 +102,5 @@ au BufNewFile,BufRead *.swg set filetype=swig
 nmap Q :call WarningExModeDisabled()<CR>
 nmap gQ :call WarningExModeDisabled()<CR>
 " vim:noet:ts=8:sw=8:sts=8
+"
+map  :Lodgeit<CR> 
