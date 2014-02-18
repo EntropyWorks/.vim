@@ -1,41 +1,44 @@
 set guifont=9x15
 set nocompatible
 
-filetype off
+if has("autocmd")
+	filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
 
-Bundle 'gmarik/vundle'
+	Bundle 'gmarik/vundle'
 
-" vim-scripts repos
-Bundle 'BrianAker/shell-commands'
-Bundle 'EasyGrep'
-Bundle 'Gundo'
-Bundle 'a.vim'
-Bundle 'c.vim'
-Bundle 'cpp.vim'
-Bundle 'dhcpd.vim'
-Bundle 'fugitive.vim'
-Bundle 'git-commit'
-" Bundle 'git://github.com/seveas/bind.vim.git'
-Bundle 'git://repo.or.cz/vcscommand'
-Bundle 'git@github.com:/jamessan/vim-gnupg'
-Bundle 'git@github.com:/tomtom/checksyntax_vim'
-Bundle 'git@github.com:Absolight/vim-bind.git'
-Bundle 'git@github.com:ingydotnet/yaml-vim.git'
-Bundle 'git@github.com:saltstack/salt-vim.git'
-Bundle 'git@github.com:tpope/vim-markdown.git'
-Bundle 'git@github.com:tpope/vim-pastie.git'
-Bundle 'lodgeit.vim'
-Bundle 'ruby.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'snipMate'
-Bundle 'tabman.vim'
-Bundle 'git@github.com:robbevan/Vagrantfile.vim.git'
-Bundle 'sudo.vim'
+	" vim-scripts repos
+	Bundle 'BrianAker/shell-commands'
+	Bundle 'EasyGrep'
+	Bundle 'Gundo'
+	Bundle 'a.vim'
+	Bundle 'c.vim'
+	Bundle 'cpp.vim'
+	Bundle 'dhcpd.vim'
+	Bundle 'fugitive.vim'
+	Bundle 'git-commit'
+	" Bundle 'git://github.com/seveas/bind.vim.git'
+	Bundle 'git://repo.or.cz/vcscommand'
+	Bundle 'git@github.com:/jamessan/vim-gnupg'
+	Bundle 'git@github.com:/tomtom/checksyntax_vim'
+	Bundle 'git@github.com:Absolight/vim-bind.git'
+	Bundle 'git@github.com:ingydotnet/yaml-vim.git'
+	Bundle 'git@github.com:saltstack/salt-vim.git'
+	Bundle 'git@github.com:tpope/vim-markdown.git'
+	Bundle 'git@github.com:tpope/vim-pastie.git'
+	Bundle 'lodgeit.vim'
+	Bundle 'ruby.vim'
+	Bundle 'scrooloose/nerdtree'
+	Bundle 'snipMate'
+	Bundle 'tabman.vim'
+	Bundle 'git@github.com:robbevan/Vagrantfile.vim.git'
+	Bundle 'sudo.vim'
+	Bundle 'git@github.com:scrooloose/syntastic.git'
 
-filetype plugin indent on     " required!
+	filetype plugin indent on     " required!
+endif
 
 set nowrap
 set tabstop=8
@@ -67,8 +70,6 @@ set cino+=(0
 set mps+=<:>
 if has("autocmd")
 " Added for cpp
-	filetype plugin indent on
-" In text files, always limit the width of text to 78 characters
 	autocmd BufRead *.yy  source $VIMRUNTIME/syntax/yacc.vim
 	autocmd BufRead *.yy  source $VIMRUNTIME/indent/yacc.vim
 	autocmd BufRead *.test set syntax=mysql_test     
