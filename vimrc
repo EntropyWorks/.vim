@@ -32,6 +32,8 @@ Bundle 'ruby.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'snipMate'
 Bundle 'tabman.vim'
+Bundle 'git@github.com:robbevan/Vagrantfile.vim.git'
+Bundle 'sudo.vim'
 
 filetype plugin indent on     " required!
 
