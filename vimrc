@@ -42,7 +42,10 @@ if has("autocmd")
 	Bundle 'tabman.vim'
 	Bundle 'taglist.vim'
 	Bundle 'tomtom/checksyntax_vim'
-	Bundle 'vim-scripts/vcscommand.vim'
+	Bundle 'vcsbzr.vim'
+	Bundle 'vcscommand.vim'
+	Bundle 'vcslogdiff'
+	Bundle 'vcsnursery'
 	" Bundle 'git://github.com/seveas/bind.vim.git'
 	"	Bundle 'git://repo.or.cz/vcscommand'
 
