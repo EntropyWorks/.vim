@@ -22,6 +22,7 @@ all: syntax/m4.vim bundle/vundle
 
 .PHONY: install
 install: all ${HOME}/.vimrc
+	@vim +BundleClean! +qall < `tty` > `tty`
 	@vim +BundleInstall +qall < `tty` > `tty`
 	@vim +BundleClean! +qall < `tty` > `tty`
 	@$(MAKE) check
@@ -46,4 +47,5 @@ syntax/m4.vim: syntax/$(dirstamp)
 
 .PHONY: clean
 clean:
+	@vim +BundleClean! +qall < `tty` > `tty`
 	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
