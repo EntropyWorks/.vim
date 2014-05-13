@@ -47,6 +47,7 @@ if has("autocmd")
 	Bundle 'vcscommand.vim'
 	Bundle 'vcslogdiff'
 	Bundle 'vcsnursery'
+	Bundle 'mitsuhiko/vim-jinja'
 	" Bundle 'git://github.com/seveas/bind.vim.git'
 	"	Bundle 'git://repo.or.cz/vcscommand'
 
@@ -114,7 +115,7 @@ endfunction
 
 au BufNewFile,BufRead *.i set filetype=swig 
 au BufNewFile,BufRead *.swg set filetype=swig 
-
+au BufNewFile,BufRead *.j2 set filetype=jinja
 
 " remap Q to not switch to Ex mode 
 nmap Q :call WarningExModeDisabled()<CR>
