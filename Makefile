@@ -4,6 +4,7 @@
 HOME:= $(shell cd ~; pwd)
 mkdir_p= mkdir -p
 dirstamp= .dirstamp
+EDITOR=vim
 
 .SUFFIXES:
 
@@ -45,7 +46,12 @@ ${HOME}/.vimrc: vimrc
 syntax/m4.vim: syntax/$(dirstamp)
 	@curl --silent --show-error -o $@ http://www.vim.org/scripts/download_script.php?src_id=5158
 
+.PHONY: uninstall
+uninstall: clean
+	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
+
 .PHONY: clean
 clean:
 	@vim +BundleClean! +qall < `tty` > `tty`
 	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
+	@rm -rf bundle

@@ -18,23 +18,23 @@ if has("autocmd")
 	Bundle 'c.vim'
 	Bundle 'clang-complete'
 	Bundle 'cpp.vim'
-	Bundle 'git@github.com:BrianAker/dhcpd.vim'
+	Bundle 'BrianAker/dhcpd.vim'
 	Bundle 'fugitive.vim'
 	Bundle 'git-commit'
-	Bundle 'git@github.com:Absolight/vim-bind.git'
-	Bundle 'git@github.com:ingydotnet/yaml-vim.git'
-	Bundle 'git@github.com:robbevan/Vagrantfile.vim.git'
-	Bundle 'git@github.com:saltstack/salt-vim.git'
-	Bundle 'git@github.com:scrooloose/syntastic.git'
-	Bundle 'git@github.com:tpope/vim-markdown.git'
-	Bundle 'git@github.com:tpope/vim-pastie.git'
+	Bundle 'Absolight/vim-bind.git'
+	Bundle 'ingydotnet/yaml-vim.git'
+	Bundle 'robbevan/Vagrantfile.vim.git'
+	Bundle 'saltstack/salt-vim.git'
+	Bundle 'scrooloose/syntastic.git'
+	Bundle 'tpope/vim-markdown.git'
+	Bundle 'tpope/vim-pastie.git'
 	Bundle 'gnupg.vim'
 	Bundle 'ifdef-highlighting'
 	Bundle 'lodgeit.vim'
 	Bundle 'matchit.zip'
 	Bundle 'pep8'
 "	Bundle 'tomtom/quickfixsigns_vim'
-	Bundle 'refactor'
+"	Bundle 'refactor'
 	Bundle 'ruby.vim'
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'snipMate'
@@ -123,5 +123,3 @@ nmap gQ :call WarningExModeDisabled()<CR>
 " vim:noet:ts=8:sw=8:sts=8
 "
 map  :Lodgeit<CR> 
-
-set fileformat=unix
