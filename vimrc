@@ -18,7 +18,7 @@ if has("autocmd")
 	Bundle 'c.vim'
 	Bundle 'clang-complete'
 	Bundle 'cpp.vim'
-	Bundle 'dhcpd.vim'
+	Bundle 'git@github.com:BrianAker/dhcpd.vim'
 	Bundle 'fugitive.vim'
 	Bundle 'git-commit'
 	Bundle 'git@github.com:Absolight/vim-bind.git'
@@ -123,3 +123,5 @@ nmap gQ :call WarningExModeDisabled()<CR>
 " vim:noet:ts=8:sw=8:sts=8
 "
 map  :Lodgeit<CR> 
+
+set fileformat=unix
