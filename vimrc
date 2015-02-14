@@ -45,7 +45,7 @@ if has("autocmd")
 "	Bundle 'tomtom/checksyntax_vim'
 	Bundle 'vcsbzr.vim'
 	Bundle 'vcscommand.vim'
-	Bundle 'vcslogdiff'
+"Bundle 'vcslogdiff'
 	Bundle 'vcsnursery'
 	Bundle 'mitsuhiko/vim-jinja'
 	" Bundle 'git://github.com/seveas/bind.vim.git'
