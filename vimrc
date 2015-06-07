@@ -26,6 +26,7 @@ if has("autocmd")
 	Bundle 'robbevan/Vagrantfile.vim.git'
 	Bundle 'saltstack/salt-vim.git'
 	Bundle 'scrooloose/syntastic.git'
+        Bundle 'myint/syntastic-extras'
 	Bundle 'tpope/vim-markdown.git'
 	Bundle 'tpope/vim-pastie.git'
 	Bundle 'gnupg.vim'
@@ -48,6 +49,7 @@ if has("autocmd")
 "Bundle 'vcslogdiff'
 	Bundle 'vcsnursery'
 	Bundle 'mitsuhiko/vim-jinja'
+	Bundle 'darfink/vim-plist'
 	" Bundle 'git://github.com/seveas/bind.vim.git'
 	"	Bundle 'git://repo.or.cz/vcscommand'
 
@@ -123,3 +125,21 @@ nmap gQ :call WarningExModeDisabled()<CR>
 " vim:noet:ts=8:sw=8:sts=8
 "
 map  :Lodgeit<CR> 
+
+" Begin Syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"  Extras
+let g:syntastic_cfg_checkers = ['cfg']
+let g:syntastic_dosini_checkers = ['dosini']
+let g:syntastic_make_checkers = ['gnumake']
+let g:syntastic_javascript_checkers = ['json_tool']
+let g:syntastic_gitcommit_checkers = ['language_check']
+let g:syntastic_svn_checkers = ['language_check']
+" End Syntastic configuration
