@@ -1,59 +1,64 @@
 set guifont=9x15
-set nocompatible
+set nocompatible  " be iMproved, required for Vundle
 
 if has("autocmd")
-	filetype off
+  filetype off      " Vundle Requirement
 
-	set rtp+=~/.vim/bundle/vundle/
-	call vundle#rc()
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 
-	Bundle 'gmarik/vundle'
+  " let Vundle manage Vundle, required
+  Plugin 'gmarik/Vundle.vim'
 
-	" vim-scripts repos
-	Bundle 'BrianAker/shell-commands'
-	Bundle 'EasyGrep'
-	Bundle 'Gundo'
-	Bundle 'YankRing.vim'
-	Bundle 'a.vim'
-	Bundle 'c.vim'
-	Bundle 'clang-complete'
-	Bundle 'cpp.vim'
-	Bundle 'BrianAker/dhcpd.vim'
-	Bundle 'fugitive.vim'
-	Bundle 'git-commit'
-	Bundle 'Absolight/vim-bind.git'
-	Bundle 'ingydotnet/yaml-vim.git'
-	Bundle 'robbevan/Vagrantfile.vim.git'
-	Bundle 'saltstack/salt-vim.git'
-	Bundle 'scrooloose/syntastic.git'
-        Bundle 'myint/syntastic-extras'
-	Bundle 'tpope/vim-markdown.git'
-	Bundle 'tpope/vim-pastie.git'
-	Bundle 'gnupg.vim'
-	Bundle 'ifdef-highlighting'
-	Bundle 'lodgeit.vim'
-	Bundle 'matchit.zip'
-	Bundle 'pep8'
-"	Bundle 'tomtom/quickfixsigns_vim'
-"	Bundle 'refactor'
-	Bundle 'ruby.vim'
-	Bundle 'scrooloose/nerdtree'
-	Bundle 'snipMate'
-	Bundle 'sqlite_c'
-	Bundle 'sudo.vim'
-	Bundle 'tabman.vim'
-	Bundle 'taglist.vim'
-"	Bundle 'tomtom/checksyntax_vim'
-	Bundle 'vcsbzr.vim'
-	Bundle 'vcscommand.vim'
-"Bundle 'vcslogdiff'
-	Bundle 'vcsnursery'
-	Bundle 'mitsuhiko/vim-jinja'
-	Bundle 'darfink/vim-plist'
-	" Bundle 'git://github.com/seveas/bind.vim.git'
-	"	Bundle 'git://repo.or.cz/vcscommand'
-
-	filetype plugin indent on     " required!
+  " vim-scripts repos
+  Plugin 'Absolight/vim-bind.git'
+  Plugin 'BrianAker/dhcpd.vim'
+  Plugin 'BrianAker/shell-commands'
+  Plugin 'EasyGrep'
+  Plugin 'Gundo'
+  Plugin 'YankRing.vim'
+  Plugin 'vim-scripts/a.vim'
+  Plugin 'vim-scripts/c.vim'
+  Plugin 'clang-complete'
+  Plugin 'cpp.vim'
+  Plugin 'darfink/vim-plist'
+  Plugin 'fugitive.vim'
+  Plugin 'git-commit'
+  Plugin 'gnupg.vim'
+  Plugin 'ifdef-highlighting'
+  Plugin 'ingydotnet/yaml-vim'
+  Plugin 'lodgeit.vim'
+  Plugin 'matchit.zip'
+  Plugin 'mitsuhiko/vim-jinja'
+  Plugin 'pep8'
+  Plugin 'robbevan/Vagrantfile.vim'
+  Plugin 'ruby.vim'
+  Plugin 'saltstack/salt-vim'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'myint/syntastic-extras'
+  Plugin 'snipMate'
+  Plugin 'sqlite_c'
+  Plugin 'sudo.vim'
+  Plugin 'tabman.vim'
+  Plugin 'taglist.vim'
+  Plugin 'tpope/vim-markdown'
+  Plugin 'tpope/vim-pastie'
+  Plugin 'tpope/vim-speeddating'
+  Plugin 'vcsbzr.vim'
+  Plugin 'vcscommand.vim'
+  Plugin 'vcsnursery'
+  Plugin 'vim-scripts/syntaxm4.vim'
+  "
+  " All of your Plugins must be added before the following line
+  " Plugin 'git://github.com/seveas/bind.vim.git'
+  " Plugin 'git://repo.or.cz/vcscommand'
+  " Plugin 'refactor'
+  " Plugin 'tomtom/checksyntax_vim'
+  " Plugin 'tomtom/quickfixsigns_vim'
+  " Plugin 'vcslogdiff'
+  call vundle#end()            " required
+  filetype plugin indent on    " required
 endif
 
 set nowrap
@@ -126,20 +131,28 @@ nmap gQ :call WarningExModeDisabled()<CR>
 "
 map  :Lodgeit<CR> 
 
-" Begin Syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"  Extras
-let g:syntastic_cfg_checkers = ['cfg']
-let g:syntastic_dosini_checkers = ['dosini']
-let g:syntastic_make_checkers = ['gnumake']
-let g:syntastic_javascript_checkers = ['json_tool']
-let g:syntastic_gitcommit_checkers = ['language_check']
-let g:syntastic_svn_checkers = ['language_check']
-" End Syntastic configuration
+if has("autocmd")
+  " BEGIN syntax/m4.vim
+  :let g:m4_default_quote="`,'" 
+  :let g:m4_default_comment='#' 
+  " END syntax/m4.vim
+
+  " BEGIN Syntastic configuration
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  "  Extras
+  let g:syntastic_cfg_checkers = ['cfg']
+  let g:syntastic_dosini_checkers = ['dosini']
+  let g:syntastic_make_checkers = ['gnumake']
+  let g:syntastic_javascript_checkers = ['json_tool']
+  let g:syntastic_gitcommit_checkers = ['language_check']
+  let g:syntastic_svn_checkers = ['language_check']
+  " End Syntastic configuration
+endif

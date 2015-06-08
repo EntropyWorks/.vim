@@ -6,6 +6,8 @@ mkdir_p= mkdir -p
 dirstamp= .dirstamp
 EDITOR=vim
 
+VIMRC= ${HOME}/.vimrc
+
 .SUFFIXES:
 
 VPATH= ${HOME}
@@ -19,29 +21,24 @@ syntax/$(dirstamp) bundle/$(dirstamp):
 
 
 .PHONY: all
-all: syntax/m4.vim bundle/vundle
+all: bundle/Vundle.vim
 
 .PHONY: install
-install: all ${HOME}/.vimrc
-	@vim +BundleClean! +qall < `tty` > `tty`
-	@vim +BundleInstall +qall < `tty` > `tty`
-	@vim +BundleClean! +qall < `tty` > `tty`
+install: ${VIMRC} all check
+	@vim +PluginClean! +qall < `tty` > `tty`
+	@vim +PluginInstall +qall < `tty` > `tty`
+	@vim +PluginClean! +qall < `tty` > `tty`
 	@$(MAKE) check
 
 .PHONY: check
 check: all
 	@vim -u vimrc +qall < `tty` > `tty`
-
-bundle/vundle: bundle/$(dirstamp)
-	@if [ -d bundle/vundle ]; then cd $@ && git pull --quiet; fi
-	@if [ ! -d bundle/vundle ]; then git clone https://github.com/gmarik/vundle.git $@; fi
-#	@if [ -d bundle/vundle ]; then \
-#		git --work-tree $@ pull \
-#	else \
-#		git clone https://github.com/gmarik/vundle.git $@ \
 	
-${HOME}/.vimrc: vimrc
-	-@cp vimrc $@
+bundle/Vundle.vim: bundle/$(dirstamp)
+	-@git clone https://github.com/gmarik/Vundle.vim.git $@
+
+${VIMRC}: vimrc
+	-@install vimrc $@
 
 syntax/m4.vim: syntax/$(dirstamp)
 	@curl --silent --show-error -o $@ http://www.vim.org/scripts/download_script.php?src_id=5158
@@ -55,3 +52,6 @@ clean:
 	@vim +BundleClean! +qall < `tty` > `tty`
 	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
 	@rm -rf bundle
+
+.DEFAULT_GOAL:= all
+.NOTPARALLEL:
