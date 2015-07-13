@@ -49,7 +49,7 @@ uninstall: clean
 
 .PHONY: clean
 clean:
-	@vim +BundleClean! +qall < `tty` > `tty`
+	@vim +PluginClean! +qall < `tty` > `tty`
 	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
 	@rm -rf bundle
 
