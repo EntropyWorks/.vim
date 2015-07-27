@@ -17,8 +17,7 @@ if has("autocmd")
   Plugin 'EasyGrep'
   Plugin 'Gundo'
   Plugin 'YankRing.vim'
-  Plugin 'vim-scripts/a.vim'
-  Plugin 'vim-scripts/c.vim'
+  Plugin 'chase/vim-ansible-yaml'
   Plugin 'clang-complete'
   Plugin 'cpp.vim'
   Plugin 'darfink/vim-plist'
@@ -30,13 +29,13 @@ if has("autocmd")
   Plugin 'lodgeit.vim'
   Plugin 'matchit.zip'
   Plugin 'mitsuhiko/vim-jinja'
+  Plugin 'myint/syntastic-extras'
   Plugin 'pep8'
   Plugin 'robbevan/Vagrantfile.vim'
   Plugin 'ruby.vim'
   Plugin 'saltstack/salt-vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/syntastic'
-  Plugin 'myint/syntastic-extras'
   Plugin 'snipMate'
   Plugin 'sqlite_c'
   Plugin 'sudo.vim'
@@ -48,6 +47,8 @@ if has("autocmd")
   Plugin 'vcsbzr.vim'
   Plugin 'vcscommand.vim'
   Plugin 'vcsnursery'
+  Plugin 'vim-scripts/a.vim'
+  Plugin 'vim-scripts/c.vim'
   Plugin 'vim-scripts/syntaxm4.vim'
   "
   " All of your Plugins must be added before the following line
@@ -154,5 +155,7 @@ if has("autocmd")
   let g:syntastic_javascript_checkers = ['json_tool']
   let g:syntastic_gitcommit_checkers = ['language_check']
   let g:syntastic_svn_checkers = ['language_check']
+  " chase/ansible
+  let g:ansible_options = {'ignore_blank_lines': 0}
   " End Syntastic configuration
 endif

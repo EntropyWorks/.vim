@@ -22,12 +22,13 @@ syntax/$(dirstamp) bundle/$(dirstamp):
 
 .PHONY: all
 all: bundle/Vundle.vim
+	@vim +PluginClean! +qall < `tty` > `tty`
+	@vim +PluginUpdate +qall < `tty` > `tty`
+	@vim +PluginInstall +qall < `tty` > `tty`
+	@vim +PluginClean! +qall < `tty` > `tty`
 
 .PHONY: install
 install: ${VIMRC} all check
-	@vim +PluginClean! +qall < `tty` > `tty`
-	@vim +PluginInstall +qall < `tty` > `tty`
-	@vim +PluginClean! +qall < `tty` > `tty`
 	@$(MAKE) check
 
 .PHONY: check
