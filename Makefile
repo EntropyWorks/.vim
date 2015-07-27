@@ -12,10 +12,7 @@ VIMRC= ${HOME}/.vimrc
 
 VPATH= ${HOME}
 
-bundle: bundle/$(dirstamp)
-syntax: syntax/$(dirstamp)
-
-syntax/$(dirstamp) bundle/$(dirstamp):
+bundle/$(dirstamp):
 	@$(mkdir_p) $(@D)
 	@touch $@
 
@@ -28,7 +25,7 @@ all: bundle/Vundle.vim
 	@vim +PluginClean! +qall < `tty` > `tty`
 
 .PHONY: install
-install: ${VIMRC} all check
+install: ${VIMRC} all
 	@$(MAKE) check
 
 .PHONY: check
@@ -40,9 +37,6 @@ bundle/Vundle.vim: bundle/$(dirstamp)
 
 ${VIMRC}: vimrc
 	-@install vimrc $@
-
-syntax/m4.vim: syntax/$(dirstamp)
-	@curl --silent --show-error -o $@ http://www.vim.org/scripts/download_script.php?src_id=5158
 
 .PHONY: uninstall
 uninstall: clean
