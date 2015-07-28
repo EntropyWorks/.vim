@@ -135,9 +135,13 @@ map  :Lodgeit<CR>
 
 if has("autocmd")
   " BEGIN syntax/m4.vim
-  :let g:m4_default_quote="`,'" 
-  :let g:m4_default_comment='#' 
+  let g:m4_default_quote="`,'" 
+  let g:m4_default_comment='#' 
   " END syntax/m4.vim
+   
+  " BEGIN vim-markdown
+  let g:vim_markdown_folding_disabled=1
+  " END vim-markdown
 
   " BEGIN Syntastic configuration
   set statusline+=%#warningmsg#
@@ -159,3 +163,5 @@ if has("autocmd")
   let g:ansible_options = {'ignore_blank_lines': 0}
   " End Syntastic configuration
 endif
+
+set nofoldenable    " disable folding
