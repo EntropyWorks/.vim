@@ -1,42 +1,52 @@
-# vim:ft=make
+# vim:
 #
 
 HOME:= $(shell cd ~; pwd)
 mkdir_p= mkdir -p
 dirstamp= .dirstamp
-EDITOR=vim
-
-VIMRC= ${HOME}/.vimrc
+EDITOR:= vim
+VIM:= vim -u vimrc
+VUNDLE_VIM:= bundle/Vundle.vim/$(dirstamp)
+VUNDLE_REPO:= https://github.com/VundleVim/Vundle.vim.git
+INSTALL:= install
 
 .SUFFIXES:
 
-VPATH= ${HOME}
+VPATH:= $(HOME)
+VIMRC:= $(HOME)/.vimrc
 
 bundle/$(dirstamp):
 	@$(mkdir_p) $(@D)
-	@touch $@
+	@$(INSTALL) $< $@
 
+.PHONY: display
+display: 
+	@echo $(VIMRC)
 
 .PHONY: all
-all: bundle/Vundle.vim
-	@vim +PluginClean! +qall < `tty` > `tty`
-	@vim +PluginUpdate +qall < `tty` > `tty`
-	@vim +PluginInstall +qall < `tty` > `tty`
-	@vim +PluginClean! +qall < `tty` > `tty`
+.ONESHELL:
+all: $(VUNDLE_VIM)
+	@$(VIM) +PluginClean! +qall < `tty` > `tty`
+	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
+	@$(VIM) +PluginClean! +qall < `tty` > `tty`
 
 .PHONY: install
-install: ${VIMRC} all
-	@$(MAKE) check
+install: | all check $(VIMRC)
 
 .PHONY: check
 check: all
-	@vim -u vimrc +qall < `tty` > `tty`
+	@$(VIM) +qall < `tty` > `tty`
 	
-bundle/Vundle.vim: bundle/$(dirstamp)
-	-@git clone https://github.com/gmarik/Vundle.vim.git $@
+$(VUNDLE_VIM): bundle/$(dirstamp)
+	-@git clone $(VUNDLE_REPO) $@
 
-${VIMRC}: vimrc
-	-@install vimrc $@
+.PHONY: update
+update:
+	@rm -rf $(VUNDLE_VIM)
+	$(MAKE)
+
+$(VIMRC): vimrc
+	-@$(INSTALL) vimrc $@
 
 .PHONY: uninstall
 uninstall: clean
