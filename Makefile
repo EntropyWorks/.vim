@@ -46,13 +46,18 @@ update:
 	$(MAKE)
 
 $(VIMRC): vimrc
-	-@$(INSTALL) vimrc $@
+	-@$(INSTALL) !(VIMRC) $@
 
+.ONESHELL:
+all: $(VUNDLE_VIM)
+
+.ONESHELL:
 .PHONY: uninstall
 uninstall: clean
 	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
 
 .PHONY: clean
+.ONESHELL:
 clean:
 	@vim +PluginClean! +qall < `tty` > `tty`
 	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
