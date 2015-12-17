@@ -3,8 +3,10 @@ set nocompatible  " be iMproved, required for Vundle
 
 " Default tab spacing
 set autoindent    " always set autoindenting on
-set copyindent    " copy the previous indentation on autoindenting
-set smartindent
+" set copyindent    " copy the previous indentation on autoindenting
+" set smartindent
+"
+" By default don't wrap
 set nowrap
 
 " Default tab spacing
@@ -124,35 +126,14 @@ if has("autocmd")
     autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
 endif
 
-nmap _dos :%s/\r//g<C-j>
-
 set path=**2
 set mousehide           " Hide the mouse when typing text
-" function for smart intdenting with tab in insert mode
-"function InsertTabWrapper()
-"    let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"        return "\<tab>"
-"    else
-"        return "\<c-p>"
-"    endif
-"endfunction
 set visualbell t_vb=
-" print warning message for Ex mode 
-"function WarningExModeDisabled()
-"    echohl WarningMsg
-"    echo "Ex mode disabled"
-"    echohl None
-"endfunction
 
 " autocmd BufNewFile,BufRead *.i set filetype=swig 
 " autocmd BufNewFile,BufRead *.swg set filetype=swig 
 " autocmd BufNewFile,BufRead *.j2 set filetype=jinja
 
-" remap Q to not switch to Ex mode 
-" nmap Q :call WarningExModeDisabled()<CR>
-" nmap gQ :call WarningExModeDisabled()<CR>
-"
 map  :Lodgeit<CR> 
 
 
