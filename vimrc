@@ -92,7 +92,6 @@ if has("autocmd")
     filetype plugin indent on    " required
 endif
 
-vsplit
 if has("macunix")
     set makeprg=gmake
 endif
