@@ -28,6 +28,8 @@ if has("autocmd")
     Plugin 'VundleVim/Vundle.vim'
 
     " vim-scripts repos
+    Plugin 'airblade/vim-gitgutter.git'
+    Plugin 'bling/vim-airline'
     Plugin 'Absolight/vim-bind.git'
     Plugin 'BrianAker/dhcpd.vim'
     Plugin 'BrianAker/shell-commands'
@@ -73,6 +75,7 @@ if has("autocmd")
     Plugin 'vcsnursery'
     Plugin 'vim-scripts/a.vim'
     Plugin 'vim-scripts/c.vim'
+    Plugin 'vim-scripts/csv.vim'
     Plugin 'vim-scripts/syntaxm4.vim'
     Plugin 'xmledit'
     "
@@ -86,8 +89,6 @@ if has("autocmd")
     call vundle#end()            " required
     filetype plugin indent on    " required
 endif
-
-vsplit
 
 if has("macunix")
     set makeprg=gmake
@@ -183,6 +184,8 @@ if has("autocmd")
     " chase/ansible
     let g:ansible_options = {'ignore_blank_lines': 0}
     " End Syntastic configuration
+    let g:airline#extensions#tabline#enabled = 1
+    " Airline
 endif
 
 set nofoldenable    " disable folding
