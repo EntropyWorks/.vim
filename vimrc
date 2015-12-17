@@ -10,11 +10,13 @@ set nowrap
 " Default tab spacing
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 if has('gui_running')
     if has('gui_mac')
         set guifont=Menlog Regular:h14
+        set go-=T
     endif
 endif
 
@@ -192,3 +194,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Mix opinion on
 " set noswapfile
 set nobackup
+
+set wildmenu
+set wildmode=list:longest

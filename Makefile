@@ -8,7 +8,7 @@ EDITOR:= vim
 VIM:= vim -u vimrc
 VUNDLE_VIM:= bundle/Vundle.vim/$(dirstamp)
 VUNDLE_REPO:= https://github.com/VundleVim/Vundle.vim.git
-INSTALL:= install
+INSTALL_R:= install
 
 .SUFFIXES:
 
@@ -17,7 +17,7 @@ VIMRC:= $(HOME)/.vimrc
 
 bundle/$(dirstamp):
 	@$(mkdir_p) $(@D)
-	@$(INSTALL) $< $@
+	@$(INSTALL_R) $< $@
 
 .PHONY: display
 display: 
@@ -46,7 +46,7 @@ update:
 	$(MAKE)
 
 $(VIMRC): vimrc
-	-@$(INSTALL) !(VIMRC) $@
+	@$(INSTALL_R) $< $@
 
 .ONESHELL:
 all: $(VUNDLE_VIM)
@@ -54,7 +54,7 @@ all: $(VUNDLE_VIM)
 .ONESHELL:
 .PHONY: uninstall
 uninstall: clean
-	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
+	rm $(HOME)/.vimrc
 
 .PHONY: clean
 .ONESHELL:
