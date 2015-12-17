@@ -48,6 +48,7 @@ update:
 $(VIMRC): vimrc
 	@$(INSTALL_R) $< $@
 
+
 .ONESHELL:
 all: $(VUNDLE_VIM)
 
