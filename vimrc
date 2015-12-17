@@ -179,6 +179,7 @@ if has("autocmd")
     let g:syntastic_javascript_checkers = ['json_tool']
     let g:syntastic_gitcommit_checkers = ['language_check']
     let g:syntastic_svn_checkers = ['language_check']
+    let g:syntastic_quiet_messages = { 'regex': 'SC2148' }
     " chase/ansible
     let g:ansible_options = {'ignore_blank_lines': 0}
     " End Syntastic configuration
