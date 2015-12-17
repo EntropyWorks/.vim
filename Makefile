@@ -46,7 +46,7 @@ update:
 	$(MAKE)
 
 $(VIMRC): vimrc
-	-@$(INSTALL) !(VIMRC) $@
+	@$(INSTALL) $< $@
 
 .ONESHELL:
 all: $(VUNDLE_VIM)
