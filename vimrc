@@ -19,6 +19,8 @@ if has('gui_running')
     if has('gui_mac')
         set guifont=Menlog Regular:h14
         set go-=T
+        " Settings for MacVim and Inconsolata font
+        let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
     endif
 endif
 
@@ -69,6 +71,7 @@ if has("autocmd")
     Plugin 'snipMate'
     Plugin 'sqlite_c'
     Plugin 'sudo.vim'
+    Plugin 'szw/vim-ctrlspace'
     Plugin 'tabman.vim'
     Plugin 'taglist.vim'
     Plugin 'tpope/vim-markdown'
