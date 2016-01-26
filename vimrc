@@ -44,6 +44,7 @@ if has("autocmd")
     Plugin 'YankRing.vim'
     Plugin 'chase/vim-ansible-yaml'
     Plugin 'clang-complete'
+    Plugin 'cmdalias.vim'
     Plugin 'cpp.vim'
     Plugin 'darfink/vim-plist'
     Plugin 'fugitive.vim'
