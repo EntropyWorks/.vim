@@ -34,6 +34,7 @@ if has("autocmd")
     Plugin 'VundleVim/Vundle.vim'
 
     " vim-scripts repos
+    Plugin 'sheerun/vim-polyglot'
     Plugin 'airblade/vim-gitgutter.git'
     Plugin 'bling/vim-airline'
     Plugin 'Absolight/vim-bind.git'
@@ -42,16 +43,16 @@ if has("autocmd")
     Plugin 'EasyGrep'
     Plugin 'Gundo'
     Plugin 'YankRing.vim'
-    Plugin 'chase/vim-ansible-yaml'
+    " Plugin 'chase/vim-ansible-yaml'
     Plugin 'clang-complete'
     Plugin 'cmdalias.vim'
-    Plugin 'cpp.vim'
+    " Plugin 'cpp.vim'
     Plugin 'darfink/vim-plist'
     Plugin 'fugitive.vim'
     Plugin 'git-commit'
     Plugin 'gnupg.vim'
     Plugin 'ifdef-highlighting'
-    Plugin 'ingydotnet/yaml-vim'
+    " Plugin 'ingydotnet/yaml-vim'
     Plugin 'lodgeit.vim'
     Plugin 'matchit.zip'
     Plugin 'molokai'
@@ -65,22 +66,19 @@ if has("autocmd")
     Plugin 'hashivim/vim-terraform'
     Plugin 'hashivim/vim-vagrant'
     Plugin 'hashivim/vim-vaultproject'
-    Plugin 'ruby.vim'
+    " Plugin 'ruby.vim'
     Plugin 'saltstack/salt-vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'snipMate'
     Plugin 'sqlite_c'
-    Plugin 'sudo.vim'
-    Plugin 'szw/vim-ctrlspace'
+    Plugin 'SudoEdit.vim'
+    Plugin 'vim-ctrlspace/vim-ctrlspace'
     Plugin 'tabman.vim'
     Plugin 'taglist.vim'
-    Plugin 'tpope/vim-markdown'
+    " Plugin 'tpope/vim-markdown'
     Plugin 'tpope/vim-pastie'
     Plugin 'tpope/vim-speeddating'
-    Plugin 'vcsbzr.vim'
-    Plugin 'vcscommand.vim'
-    Plugin 'vcsnursery'
     Plugin 'vim-scripts/a.vim'
     Plugin 'vim-scripts/c.vim'
     Plugin 'vim-scripts/csv.vim'
@@ -111,6 +109,7 @@ set hlsearch
 set wildignore=*.o,*.lo,*.swp,*.bak,*.pyc,*.class
 set incsearch
 set showmatch
+" Required for vim-ctrlspace
 set hidden " let hide unwritten buffers
 set showcmd " show uncomplete command
 set title " set xterm title to current file
@@ -167,7 +166,7 @@ if has("autocmd")
     let g:syntastic_javascript_checkers = ['json_tool']
     let g:syntastic_gitcommit_checkers = ['language_check']
     let g:syntastic_svn_checkers = ['language_check']
-    let g:syntastic_quiet_messages = { 'regex': 'SC2148' }
+    let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
     " chase/ansible
     let g:ansible_options = {'ignore_blank_lines': 0}
     " End Syntastic configuration
@@ -177,12 +176,14 @@ endif
 
 set nofoldenable    " disable folding
 
-" sudo for root owned files
-cmap w!! w !sudo tee % >/dev/null
-
 " Mix opinion on
 " set noswapfile
 set nobackup
 
 set wildmenu
 set wildmode=list:longest
+
+augroup vimrcEx
+    autocmd!
+    autocmd VimEnter * call CmdAlias('X','x')
+augroup END
