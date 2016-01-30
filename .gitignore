@@ -1,7 +1,9 @@
+*.dirstamp
+*.swp
+*bak
 .DS_Store
 .netrwhist
 bundle
-syntax/.dirstamp
-*.swp
+colors/solarized.vim
 syntax
-*bak
+syntax/.dirstamp

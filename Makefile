@@ -8,16 +8,21 @@ EDITOR:= vim
 VIM:= vim -u vimrc
 VUNDLE_VIM:= bundle/Vundle.vim/$(dirstamp)
 VUNDLE_REPO:= https://github.com/VundleVim/Vundle.vim.git
-INSTALL_R:= install
+INSTALL_C:= install -C
+TOUCH_R:= touch -r
+BUNDLE:= bundle/.vimrc_timestamp
 
 .SUFFIXES:
 
-VPATH:= $(HOME)
 VIMRC:= $(HOME)/.vimrc
 
-bundle/$(dirstamp):
+bundle/$(dirstamp): /dev/null
 	@$(mkdir_p) $(@D)
-	@$(INSTALL_R) $< $@
+	@$(INSTALL_C) $< $@
+
+colors/$(dirstamp): /dev/null
+	@$(mkdir_p) $(@D)
+	@$(INSTALL_C) $< $@
 
 .PHONY: display
 display: 
@@ -25,13 +30,20 @@ display:
 
 .PHONY: all
 .ONESHELL:
-all: $(VUNDLE_VIM)
+all: $(VUNDLE_VIM) $(BUNDLE)  colors/solarized.vim
+
+colors/solarized.vim: bundle/vim-colors-solarized/colors/solarized.vim colors/$(dirstamp)
+	@$(INSTALL_C) $< $@
+
+$(BUNDLE): vimrc bundle/$(dirstamp)
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
 	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
+	@$(TOUCH_R) $< $@
 
-.PHONY: install
-install: | all check $(VIMRC)
+
+.phony: install
+install: | all check $(vimrc)
 
 .PHONY: check
 check: all
@@ -46,7 +58,7 @@ update:
 	$(MAKE)
 
 $(VIMRC): vimrc
-	@$(INSTALL_R) $< $@
+	@$(INSTALL_C) $< $@
 
 
 .ONESHELL:
