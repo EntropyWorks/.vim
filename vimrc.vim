@@ -194,31 +194,31 @@ if has("autocmd")
     " END vim-markdown
 
     " BEGIN Syntastic configuration
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+    if filereadable( expand("$HOME/bundle/syntastic/LICENCE") )
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    "  Extras
-    let g:syntastic_cfg_checkers = ['cfg']
-    let g:syntastic_dosini_checkers = ['dosini']
-    let g:syntastic_make_checkers = ['gnumake']
-    let g:syntastic_javascript_checkers = ['json_tool']
-    let g:syntastic_gitcommit_checkers = ['language_check']
-    let g:syntastic_svn_checkers = ['language_check']
-    let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
-    " chase/ansible
-    let g:ansible_options = {'ignore_blank_lines': 0}
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
+        "  Extras
+        let g:syntastic_cfg_checkers = ['cfg']
+        let g:syntastic_dosini_checkers = ['dosini']
+        let g:syntastic_make_checkers = ['gnumake']
+        let g:syntastic_javascript_checkers = ['json_tool']
+        let g:syntastic_gitcommit_checkers = ['language_check']
+        let g:syntastic_svn_checkers = ['language_check']
+        let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
+        " chase/ansible
+        let g:ansible_options = {'ignore_blank_lines': 0}
+    endif
     " End Syntastic configuration
 
 
     " Airline
-    if filereadable( expand("$HOME/.vim/bundle/vim-airline-themes/plugin/airline-themes.vim") )
-        let g:airline#extensions#tabline#enabled = 1
-    endif
+    let g:airline#extensions#tabline#enabled = 1
 endif
 
 set nofoldenable    " disable folding
@@ -231,6 +231,5 @@ set wildmenu
 set wildmode=list:longest
 
 augroup vimrcEx
-    autocmd!
     autocmd VimEnter * call CmdAlias('X','x')
 augroup END

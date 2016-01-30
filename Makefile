@@ -4,8 +4,9 @@
 HOME:= $(shell cd ~; pwd)
 mkdir_p= mkdir -p
 dirstamp= .dirstamp
+VIMRC_VIM:= vimrc.vim
 EDITOR:= vim
-VIM:= vim -u vimrc.vim
+VIM:= vim -u $(VIMRC_VIM)
 VUNDLE_VIM:= bundle/Vundle.vim/$(dirstamp)
 VUNDLE_REPO:= https://github.com/VundleVim/Vundle.vim.git
 INSTALL_C:= install -C
@@ -32,10 +33,13 @@ display:
 .ONESHELL:
 all: $(VUNDLE_VIM) $(BUNDLE)  colors/solarized.vim
 
+bundle/vim-colors-solarized/colors/solarized.vim:
+	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
+
 colors/solarized.vim: bundle/vim-colors-solarized/colors/solarized.vim colors/$(dirstamp)
 	@$(INSTALL_C) $< $@
 
-$(BUNDLE): vimrc.vim bundle/$(dirstamp)
+$(BUNDLE): $(VIMRC_VIM) bundle/$(dirstamp)
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
 	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
@@ -43,21 +47,22 @@ $(BUNDLE): vimrc.vim bundle/$(dirstamp)
 
 
 .phony: install
-install: | all check $(vimrc)
+install: | all check $(VIMRC)
 
 .PHONY: check
 check: all
 	@$(VIM) +qall < `tty` > `tty`
 	
 $(VUNDLE_VIM): bundle/$(dirstamp)
-	-@git clone $(VUNDLE_REPO) $@
+	@git clone $(VUNDLE_REPO) $(@D)
+	@$(TOUCH_R) $< $@
 
 .PHONY: update
 update:
 	@rm -rf $(VUNDLE_VIM)
 	$(MAKE)
 
-$(VIMRC): vimrc.vim
+$(VIMRC): $(VIMRC_VIM)
 	@$(INSTALL_C) $< $@
 
 
@@ -67,14 +72,14 @@ all: $(VUNDLE_VIM)
 .ONESHELL:
 .PHONY: uninstall
 uninstall: clean
-	rm $(HOME)/.vimrc
+	@rm $(VIMRC)
 
 .PHONY: clean
 .ONESHELL:
 clean:
 	@vim +PluginClean! +qall < `tty` > `tty`
-	@if [ -L $(HOME)/.vimrc ]; then rm $(HOME)/.vimrc; fi
-	@rm -rf bundle
+	@if [ -L $(VIMRC) ]; then rm $(VIMRC); fi
+	@rm -rf bundle colors
 
 .DEFAULT_GOAL:= all
 .NOTPARALLEL:
