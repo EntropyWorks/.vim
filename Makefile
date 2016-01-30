@@ -5,7 +5,7 @@ HOME:= $(shell cd ~; pwd)
 mkdir_p= mkdir -p
 dirstamp= .dirstamp
 EDITOR:= vim
-VIM:= vim -u vimrc
+VIM:= vim -u vimrc.vim
 VUNDLE_VIM:= bundle/Vundle.vim/$(dirstamp)
 VUNDLE_REPO:= https://github.com/VundleVim/Vundle.vim.git
 INSTALL_C:= install -C
@@ -35,7 +35,7 @@ all: $(VUNDLE_VIM) $(BUNDLE)  colors/solarized.vim
 colors/solarized.vim: bundle/vim-colors-solarized/colors/solarized.vim colors/$(dirstamp)
 	@$(INSTALL_C) $< $@
 
-$(BUNDLE): vimrc bundle/$(dirstamp)
+$(BUNDLE): vimrc.vim bundle/$(dirstamp)
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
 	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
@@ -57,7 +57,7 @@ update:
 	@rm -rf $(VUNDLE_VIM)
 	$(MAKE)
 
-$(VIMRC): vimrc
+$(VIMRC): vimrc.vim
 	@$(INSTALL_C) $< $@
 
 
