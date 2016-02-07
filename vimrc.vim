@@ -194,7 +194,7 @@ if has("autocmd")
     " END vim-markdown
 
     " BEGIN Syntastic configuration
-    if filereadable( expand("$HOME/bundle/syntastic/LICENCE") )
+    if filereadable( expand('~/.vim/bundle/syntastic/LICENCE') )
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
@@ -210,6 +210,7 @@ if has("autocmd")
         let g:syntastic_javascript_checkers = ['json_tool']
         let g:syntastic_gitcommit_checkers = ['language_check']
         let g:syntastic_svn_checkers = ['language_check']
+        let g:syntastic_sh_checkers = ['shellcheck']
         let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
         " chase/ansible
         let g:ansible_options = {'ignore_blank_lines': 0}
