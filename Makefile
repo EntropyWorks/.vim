@@ -73,7 +73,7 @@ all: $(VUNDLE_VIM)
 .ONESHELL:
 .PHONY: uninstall
 uninstall: clean
-	@rm $(VIMRC)
+	@rm $(VIMRC) gvimrc
 
 .PHONY: clean
 .ONESHELL:
