@@ -1,25 +1,22 @@
 # vim:
-#
 
 HOME:= $(shell cd ~; pwd)
 mkdir_p= mkdir -p
 dirstamp= .dirstamp
 VIMRC_VIM:= vimrc.vim
+BUNDLE_VIM:= bundle.vim
 EDITOR:= vim
 VIM:= vim -u $(VIMRC_VIM)
+VUNDLE:= bundle/Vundle.vim/README.md
 VUNDLE_VIM:= bundle/Vundle.vim/$(dirstamp)
 VUNDLE_REPO:= https://github.com/VundleVim/Vundle.vim.git
 INSTALL_C:= install -C
 TOUCH_R:= touch -r
-BUNDLE:= bundle/.vimrc_timestamp
+BUNDLES:= bundle/.dirstamp
 
 .SUFFIXES:
 
 VIMRC:= $(HOME)/.vimrc
-
-bundle/$(dirstamp): /dev/null
-	@$(mkdir_p) $(@D)
-	@$(INSTALL_C) $< $@
 
 colors/$(dirstamp): /dev/null
 	@$(mkdir_p) $(@D)
@@ -31,35 +28,39 @@ display:
 
 .PHONY: all
 .ONESHELL:
-all: $(VUNDLE_VIM) $(BUNDLE)  colors/solarized.vim
+all: $(VUNDLE_VIM) $(BUNDLES)
 
 bundle/vim-colors-solarized/colors/solarized.vim:
 	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
 
+# Dead rule
 colors/solarized.vim: bundle/vim-colors-solarized/colors/solarized.vim colors/$(dirstamp)
 	@$(INSTALL_C) $< $@
 
-$(BUNDLE): $(VIMRC_VIM) bundle/$(dirstamp)
+$(BUNDLES): $(BUNDLE_VIM)
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
-	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
+	@$(VIM) +PluginInstall! +qall < `tty` > `tty` && $(TOUCH_R) $< $@
 	@$(VIM) +PluginClean! +qall < `tty` > `tty`
-	@$(TOUCH_R) $< $@
-
 
 .phony: install
-install: | all check $(VIMRC)
+install: | all check $(VIMRC) gvimrc
+
+gvimrc: gvimrc.vim
+	@$(INSTALL_C) $< $@
 
 .PHONY: check
 check: all
 	@$(VIM) +qall < `tty` > `tty`
-	
-$(VUNDLE_VIM): bundle/$(dirstamp)
+
+$(VUNDLE):
 	@git clone $(VUNDLE_REPO) $(@D)
+	
+$(VUNDLE_VIM): $(VUNDLE)
 	@$(TOUCH_R) $< $@
 
 .PHONY: update
 update:
-	@rm -rf $(VUNDLE_VIM)
+	@rm -rf $(VUNDLE_VIM) $(BUNDLES)
 	$(MAKE)
 
 $(VIMRC): $(VIMRC_VIM)

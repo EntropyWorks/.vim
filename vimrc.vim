@@ -1,4 +1,5 @@
 " vim:set softtabstop=4 shiftwidth=4 expandtab :
+set all&
 set nocompatible  " be iMproved, required for Vundle
 
 " Default tab spacing
@@ -15,99 +16,13 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-
+if isdirectory( expand('~/.vim/bundle/Vundle.vim') )
 if has("autocmd")
-    filetype off      " Vundle Requirement
-
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
-
-    " let Syntastic take its turn
-    Plugin 'scrooloose/syntastic'
-
-    " let Polyglot take its turn
-    Plugin 'sheerun/vim-polyglot'
-
-    " vim-scripts repos
-    Plugin 'airblade/vim-gitgutter.git'
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'Absolight/vim-bind.git'
-    Plugin 'BrianAker/dhcpd.vim'
-    Plugin 'BrianAker/shell-commands'
-    Plugin 'EasyGrep'
-    Plugin 'Gundo'
-    Plugin 'YankRing.vim'
-    " Plugin 'chase/vim-ansible-yaml'
-    Plugin 'clang-complete'
-    Plugin 'cmdalias.vim'
-    " Plugin 'cpp.vim'
-    Plugin 'darfink/vim-plist'
-     
-    " Git made easy for vim
-    Plugin 'fugitive.vim'
-
-    Plugin 'git-commit'
-    Plugin 'gnupg.vim'
-    Plugin 'ifdef-highlighting'
-    " Plugin 'ingydotnet/yaml-vim'
-    Plugin 'lodgeit.vim'
-    Plugin 'matchit.zip'
-    Plugin 'molokai'
-    Plugin 'mitsuhiko/vim-jinja'
-    Plugin 'myint/syntastic-extras'
-    Plugin 'pep8'
-    Plugin 'hashivim/vim-consul'
-    Plugin 'hashivim/vim-nomadproject'
-    Plugin 'hashivim/vim-ottoproject'
-    Plugin 'hashivim/vim-packer'
-    Plugin 'hashivim/vim-terraform'
-    Plugin 'hashivim/vim-vagrant'
-    Plugin 'hashivim/vim-vaultproject'
-    Plugin 'justinmk/vim-syntax-extra'
-    " Plugin 'ruby.vim'
-    Plugin 'saltstack/salt-vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'snipMate'
-    Plugin 'sqlite_c'
-    Plugin 'SudoEdit.vim'
-    Plugin 'vim-ctrlspace/vim-ctrlspace'
-    Plugin 'tabman.vim'
-    Plugin 'taglist.vim'
-    Plugin 'tpope/vim-pastie'
-    Plugin 'tpope/vim-speeddating'
-    Plugin 'vim-scripts/a.vim'
-    Plugin 'vim-scripts/c.vim'
-    Plugin 'vim-scripts/csv.vim'
-    Plugin 'vim-scripts/syntaxm4.vim'
-    Plugin 'xmledit'
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'twerth/ir_black'
-
-    " All of your Plugins must be added before the following line
-    " Plugin 'git://github.com/seveas/bind.vim.git'
-    " Plugin 'git://repo.or.cz/vcscommand'
-    " Plugin 'refactor'
-    " Plugin 'tomtom/checksyntax_vim'
-    " Plugin 'tomtom/quickfixsigns_vim'
-    " Plugin 'vcslogdiff'
-    call vundle#end()            " required
-    filetype plugin indent on    " required
+    runtime bundle.vim
+endif
 endif
 
-if has('gui_running')
-    if has('gui_mac')
-        set gfn=Menlo\ Regular:h18
-        set go-=T
-        " Settings for MacVim and Inconsolata font
-        " let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
-    endif
-endif
-
-if filereadable( expand("$HOME/.vim/colors/solarized.vim") )
+if filereadable( expand('~/.vim/bundle/vim-colors-solarized/README.mkd') )
     "
     " lazy method of appending this onto your .vimrc ":w! >> ~/.vimrc"
     " ------------------------------------------------------------------
@@ -212,11 +127,18 @@ if has("autocmd")
         let g:syntastic_svn_checkers = ['language_check']
         let g:syntastic_sh_checkers = ['shellcheck']
         let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
-        " chase/ansible
-        let g:ansible_options = {'ignore_blank_lines': 0}
+        " Obvious security issue to resolve
+        " let g:syntastic_enable_perl_checker = 1
+
+        " pearofducks/ansible-vim
+        let g:ansible_attribute_highlight = "ob"
+        let g:ansible_name_highlight = 'd'
+        let g:polyglot_disabled = ['ansible']
+
+        " Run all checkers
+        let g:syntastic_aggregate_errors = 1
     endif
     " End Syntastic configuration
-
 
     " Airline
     let g:airline#extensions#tabline#enabled = 1
