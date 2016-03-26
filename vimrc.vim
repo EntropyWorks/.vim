@@ -143,6 +143,18 @@ if has("autocmd")
     " Airline
     let g:airline#extensions#tabline#enabled = 1
 endif
+" Automatic GdbMgr Invocation:
+if filereadable( expand('~/.vim/bundle/gdbmgr/README') )
+		if has("unix") && executable("file") && !&l:binary
+			if executable(expand("<afile>"))
+				let file_type= system("file ".expand("<afile>"))
+				if file_type =~ '\<executable\>' && file_type !~ '\<shell\>' && file_type !~ '\<script\>'
+					call gdbmgr#GdbMgrInit(expand("<afile>"))
+				endif
+				unlet file_type
+			endif
+		endif
+endif
 
 set nofoldenable    " disable folding
 
