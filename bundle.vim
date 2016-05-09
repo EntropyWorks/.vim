@@ -73,6 +73,8 @@ Plugin 'altercation/vim-colors-solarized'
 " Alternate color coding
 Plugin 'twerth/ir_black'
 Plugin 'junegunn/vader.vim'
+Plugin 'vim-scripts/vim-do'
+Plugin 'vim-scripts/DirDiff.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
