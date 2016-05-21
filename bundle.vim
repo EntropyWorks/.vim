@@ -86,6 +86,7 @@ Plugin 'vim-scripts/c.vim'
 Plugin 'vim-scripts/csv.vim'
 Plugin 'vim-scripts/syntaxm4.vim'
 Plugin 'sukima/xmledit'
+Plugin 'xu-cheng/brew.vim'
 " Color I use
 Plugin 'altercation/vim-colors-solarized'
 " Alternate color coding

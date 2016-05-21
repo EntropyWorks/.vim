@@ -125,7 +125,7 @@ if has("autocmd")
         let g:syntastic_javascript_checkers = ['json_tool']
         let g:syntastic_gitcommit_checkers = ['language_check']
         let g:syntastic_svn_checkers = ['language_check']
-        let g:syntastic_sh_checkers = ['shellcheck']
+        let g:syntastic_sh_checkers = ['shellcheck -s sh']
         let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
         " Obvious security issue to resolve
         " let g:syntastic_enable_perl_checker = 1
