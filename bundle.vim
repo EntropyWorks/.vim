@@ -94,7 +94,7 @@ Plugin 'twerth/ir_black'
 Plugin 'junegunn/vader.vim'
 Plugin 'vim-scripts/vim-do'
 Plugin 'vim-scripts/DirDiff.vim'
-Plugin 'vim-scripts/groovy.vim'
+Plugin 'BrianAker/groovy.vim'
 Plugin 'honza/dockerfile.vim'
 Plugin 'Persistent13/vim-ps1'
 Plugin 'keith/swift.vim'
@@ -105,6 +105,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'uarun/vim-protobuf'
 Plugin 'fatih/vim-go'
 Plugin 'vim-scripts/vim-gtest'
+Plugin 'dearrrfish/vim-applescript'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
