@@ -90,7 +90,7 @@ Plugin 'xu-cheng/brew.vim'
 " Color I use
 Plugin 'altercation/vim-colors-solarized'
 " Alternate color coding
-Plugin 'twerth/ir_black'
+" Plugin 'twerth/ir_black'
 Plugin 'junegunn/vader.vim'
 Plugin 'vim-scripts/vim-do'
 Plugin 'vim-scripts/DirDiff.vim'
@@ -107,6 +107,9 @@ Plugin 'uarun/vim-protobuf'
 Plugin 'fatih/vim-go'
 Plugin 'vim-scripts/vim-gtest'
 Plugin 'dearrrfish/vim-applescript'
+
+" Vim Liquid runtime files with Jekyll enhancements
+Plugin 'tpope/vim-liquid'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

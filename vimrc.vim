@@ -103,6 +103,12 @@ if has("autocmd")
     let g:m4_default_quote="`,'" 
     let g:m4_default_comment='#' 
     " END syntax/m4.vim
+    "
+    " BEGIN pearofducks/ansible-vim
+    let g:ansible_name_highlight = 'b'
+    let g:ansible_extra_keywords_highlight = 1
+    let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+    " END pearofducks/ansible-vim
 
     " BEGIN vim-markdown
     let g:vim_markdown_folding_disabled=1
@@ -127,6 +133,7 @@ if has("autocmd")
         let g:syntastic_svn_checkers = ['language_check']
         let g:syntastic_sh_checkers = ['shellcheck -s sh']
         let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
+        let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
         " Obvious security issue to resolve
         " let g:syntastic_enable_perl_checker = 1
 
