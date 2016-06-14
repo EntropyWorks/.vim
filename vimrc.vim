@@ -125,6 +125,7 @@ if has("autocmd")
         let g:syntastic_check_on_open = 1
         let g:syntastic_check_on_wq = 0
         "  Extras
+        let g:syntastic_yaml_checkers = ['pyyaml']
         let g:syntastic_cfg_checkers = ['cfg']
         let g:syntastic_dosini_checkers = ['dosini']
         let g:syntastic_make_checkers = ['gnumake']
@@ -146,6 +147,9 @@ if has("autocmd")
         let g:syntastic_aggregate_errors = 1
     endif
     " End Syntastic configuration
+      
+    " Plugin 'elzr/vim-json'
+    let g:vim_json_syntax_conceal = 0
 
     " Airline
     let g:airline#extensions#tabline#enabled = 1

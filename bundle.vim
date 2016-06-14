@@ -107,6 +107,7 @@ Plugin 'uarun/vim-protobuf'
 Plugin 'fatih/vim-go'
 Plugin 'vim-scripts/vim-gtest'
 Plugin 'dearrrfish/vim-applescript'
+Plugin 'elzr/vim-json'
 
 " Vim Liquid runtime files with Jekyll enhancements
 Plugin 'tpope/vim-liquid'
