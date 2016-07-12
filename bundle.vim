@@ -108,6 +108,10 @@ Plugin 'fatih/vim-go'
 Plugin 'vim-scripts/vim-gtest'
 Plugin 'dearrrfish/vim-applescript'
 Plugin 'elzr/vim-json'
+Plugin 'moll/vim-node'
+Plugin 'tpope/vim-projectionist'
+Plugin 'syngan/vim-vimlint'
+Plugin 'ynkdir/vim-vimlparser'
 
 " Vim Liquid runtime files with Jekyll enhancements
 Plugin 'tpope/vim-liquid'

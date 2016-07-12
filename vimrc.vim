@@ -115,7 +115,7 @@ if has("autocmd")
     " END vim-markdown
 
     " BEGIN Syntastic configuration
-    if filereadable( expand('~/.vim/bundle/syntastic/LICENCE') )
+    if exists(':SyntasticCheck')
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
@@ -124,6 +124,7 @@ if has("autocmd")
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
         let g:syntastic_check_on_wq = 0
+        let g:syntastic_auto_jump = 1
         "  Extras
         let g:syntastic_yaml_checkers = ['pyyaml']
         let g:syntastic_cfg_checkers = ['cfg']
@@ -132,41 +133,50 @@ if has("autocmd")
         let g:syntastic_javascript_checkers = ['json_tool']
         let g:syntastic_gitcommit_checkers = ['language_check']
         let g:syntastic_svn_checkers = ['language_check']
-        let g:syntastic_sh_checkers = ['shellcheck -s sh']
+        let g:syntastic_vim_checkers = ['vimlint']
+        let g:syntastic_sh_checkers = ['shellcheck']
+        let g:syntastic_sh_shellcheck_args = "-s bash"
         let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
         let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
         " Obvious security issue to resolve
         " let g:syntastic_enable_perl_checker = 1
 
-        " pearofducks/ansible-vim
-        let g:ansible_attribute_highlight = "ob"
-        let g:ansible_name_highlight = 'd'
-        let g:polyglot_disabled = ['ansible']
-
         " Run all checkers
         let g:syntastic_aggregate_errors = 1
     endif
     " End Syntastic configuration
+     
+    " pearofducks/ansible-vim
+    let g:ansible_attribute_highlight = "ob"
+    let g:ansible_name_highlight = 'd'
+    let g:polyglot_disabled = ['ansible']
+
       
     " Plugin 'elzr/vim-json'
     let g:vim_json_syntax_conceal = 0
 
     " Airline
-    let g:airline#extensions#tabline#enabled = 1
-endif
-" Automatic GdbMgr Invocation:
-if filereadable( expand('~/.vim/bundle/gdbmgr/README') )
-		if has("unix") && executable("file") && !&l:binary
-			if executable(expand("<afile>"))
-				let file_type= system("file ".expand("<afile>"))
-				if file_type =~ '\<executable\>' && file_type !~ '\<shell\>' && file_type !~ '\<script\>'
-					call gdbmgr#GdbMgrInit(expand("<afile>"))
-				endif
-				unlet file_type
-			endif
-		endif
-endif
+    if exists(':AirlineTheme')
+        let g:airline#extensions#syntastic#enabled = 1
+        let g:airline#extensions#tabline#enabled = 1
+    endif
 
+    " Clang
+    let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+     
+    " Automatic GdbMgr Invocation:
+    if exists(':GdbMgr')
+        if has("unix") && executable("file") && !&l:binary
+            if executable(expand("<afile>"))
+                let file_type= system("file ".expand("<afile>"))
+                if file_type =~ '\<executable\>' && file_type !~ '\<shell\>' && file_type !~ '\<script\>'
+                    call gdbmgr#GdbMgrInit(expand("<afile>"))
+                endif
+                unlet file_type
+            endif
+        endif
+    endif
+endif " has("autocmd")
 set nofoldenable    " disable folding
 
 " Mix opinion on
