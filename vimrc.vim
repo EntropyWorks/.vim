@@ -130,7 +130,8 @@ if has("autocmd")
         let g:syntastic_cfg_checkers = ['cfg']
         let g:syntastic_dosini_checkers = ['dosini']
         let g:syntastic_make_checkers = ['gnumake']
-        let g:syntastic_javascript_checkers = ['json_tool']
+        let g:syntastic_javascript_checkers = ['jslint']
+        let g:syntastic_json_checkers = ['jsonlint']
         let g:syntastic_gitcommit_checkers = ['language_check']
         let g:syntastic_svn_checkers = ['language_check']
         let g:syntastic_vim_checkers = ['vimlint']
@@ -152,9 +153,6 @@ if has("autocmd")
     let g:polyglot_disabled = ['ansible']
 
       
-    " Plugin 'elzr/vim-json'
-    let g:vim_json_syntax_conceal = 0
-
     " Airline
     if exists(':AirlineTheme')
         let g:airline#extensions#syntastic#enabled = 1

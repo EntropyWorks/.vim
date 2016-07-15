@@ -1,0 +1,9 @@
+"accessories": [
+   {
+     "accessory": "WUNDERGROUND",
+     "name": "Weather Underground",
+     "device": "WURecklinghausen",
+     "key": "xxxxxxxxxxxx",
+     "city": "Germany/Recklinghausen"
+     }
+   
