@@ -146,11 +146,27 @@ if has("autocmd")
         let g:syntastic_aggregate_errors = 1
     endif
     " End Syntastic configuration
+    "
+    " elzr-vim
+    let g:vim_json_syntax_conceal = 0
      
     " pearofducks/ansible-vim
     let g:ansible_attribute_highlight = "ob"
     let g:ansible_name_highlight = 'd'
     let g:polyglot_disabled = ['ansible']
+
+    " indentLine - https://github.com/Yggdroot/indentLine
+    if exists(':IndentLinesToggle')
+        " Vim
+        let g:indentLine_color_term = 239
+
+        " GVim
+        let g:indentLine_color_gui = '#A4E57E'
+
+        " none X terminal
+        let g:indentLine_color_tty_light = 7 " (default: 4)
+        let g:indentLine_color_dark = 1 " (default: 2)
+    endif
 
       
     " Airline
