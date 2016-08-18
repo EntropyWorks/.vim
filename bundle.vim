@@ -114,6 +114,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-projectionist'
 Plugin 'syngan/vim-vimlint'
 Plugin 'ynkdir/vim-vimlparser'
+Plugin 'vim-jekyll'
 
 " Vim Liquid runtime files with Jekyll enhancements
 Plugin 'tpope/vim-liquid'
