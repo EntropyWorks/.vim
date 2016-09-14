@@ -116,8 +116,16 @@ Plugin 'syngan/vim-vimlint'
 Plugin 'ynkdir/vim-vimlparser'
 Plugin 'vim-jekyll'
 
+" Both required for Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+
 " Vim Liquid runtime files with Jekyll enhancements
 Plugin 'tpope/vim-liquid'
+
+" OpenHab
+Plugin 'cyberkov/openhab-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

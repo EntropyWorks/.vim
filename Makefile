@@ -31,16 +31,17 @@ display:
 all: $(VUNDLE_VIM) $(BUNDLES)
 
 bundle/vim-colors-solarized/colors/solarized.vim:
-	@$(VIM) +PluginInstall! +qall < `tty` > `tty`
+	@$(VIM) +PluginInstall! +qall
 
 # Dead rule
 colors/solarized.vim: bundle/vim-colors-solarized/colors/solarized.vim colors/$(dirstamp)
 	@$(INSTALL_C) $< $@
 
 $(BUNDLES): $(BUNDLE_VIM)
-	@$(VIM) +PluginClean! +qall < `tty` > `tty`
-	@$(VIM) +PluginInstall! +qall < `tty` > `tty` && $(TOUCH_R) $< $@
-	@$(VIM) +PluginClean! +qall < `tty` > `tty`
+	@$(VIM) +PluginClean! +qall
+	@$(VIM) +PluginInstall! +qall
+	@$(VIM) +PluginClean! +qall
+	@	$(TOUCH_R) $< $@
 
 .phony: install
 install: | all check $(VIMRC) gvimrc
@@ -50,7 +51,7 @@ gvimrc: gvimrc.vim
 
 .PHONY: check
 check: all
-	@$(VIM) +qall < `tty` > `tty`
+	@$(VIM) +qall
 
 $(VUNDLE):
 	@git clone $(VUNDLE_REPO) $(@D)
@@ -78,7 +79,7 @@ uninstall: clean
 .PHONY: clean
 .ONESHELL:
 clean:
-	@vim +PluginClean! +qall < `tty` > `tty`
+	@vim +PluginClean! +qall
 	@if [ -L $(VIMRC) ]; then rm $(VIMRC); fi
 	@rm -rf bundle colors
 
