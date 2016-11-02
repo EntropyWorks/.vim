@@ -140,7 +140,8 @@ if join(g:vundle#bundles) =~# 'syntastic'
     let g:syntastic_vim_checkers = ['vimlint']
     let g:syntastic_sh_checkers = ['shellcheck']
     let g:syntastic_sh_shellcheck_args = "-s bash"
-    let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090\|SC2039\|SC2112' }
+    let g:my_syntastic_quiet_messages = ['SC2148', 'SC1090', 'SC2039', 'SC2112']
+    let g:syntastic_quiet_messages = { 'regex': g:my_syntastic_quiet_messages }
     let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
     " Obvious security issue to resolve
     " let g:syntastic_enable_perl_checker = 1
