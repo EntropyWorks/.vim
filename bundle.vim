@@ -36,6 +36,10 @@ Plugin 'darfink/vim-plist'
 
 " Git made easy for vim
 Plugin 'tpope/vim-fugitive'
+" Ultimate auto-completion system for Vim
+"Plugin 'Shougo/neocomplcache'
+" If you have compiled vim with lua support 
+Plugin 'Shougo/neocomplete'
 
 " Plugin 'git-commit'
 Plugin 'vim-scripts/gnupg.vim'
