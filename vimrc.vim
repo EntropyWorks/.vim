@@ -17,15 +17,15 @@ set softtabstop=2
 set expandtab
 
 " if exists('g:loaded_syntastic_plugin') || &compatible
-if ! has("autocmd")
+if ! has('autocmd')
     finish
 endif
 
-if isdirectory( expand('~/.vim/bundle/Vundle.vim') )
+if isdirectory( expand("$HOME/.vim/bundle/Vundle.vim") )
     runtime bundle.vim
 endif
 
-if filereadable( expand('~/.vim/bundle/vim-colors-solarized/README.mkd') )
+if filereadable( expand("$HOME/.vim/bundle/vim-colors-solarized/README.mkd") )
     "
     " lazy method of appending this onto your .vimrc ":w! >> ~/.vimrc"
     " ------------------------------------------------------------------
@@ -58,7 +58,7 @@ if filereadable( expand('~/.vim/bundle/vim-colors-solarized/README.mkd') )
 endif
 
 
-if has("macunix")
+if has('macunix')
     set makeprg=gmake
 endif
 
@@ -83,33 +83,35 @@ set nostartofline
 "set cino+=(0
 set mps+=<:>
 "
-" Recognize yy files as Yacc
-autocmd BufRead,BufNewFile *.yy setfiletype yacc
-" autocmd BufRead *.test set syntax=mysql_test     
-" When editing a file, always jump to the last cursor position
-autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
+augroup YACC
+    " Recognize yy files as Yacc
+    autocmd BufRead,BufNewFile *.yy setfiletype yacc
+    " autocmd BufRead *.test set syntax=mysql_test     
+augroup END
+
+
+augroup position
+    " When editing a file, always jump to the last cursor position
+    autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
+augroup END
 
 set path=**2
 set mousehide           " Hide the mouse when typing text
 set visualbell t_vb=
 
+" augroup myfiletype
 " autocmd BufNewFile,BufRead *.i set filetype=swig 
 " autocmd BufNewFile,BufRead *.swg set filetype=swig 
 " autocmd BufNewFile,BufRead *.j2 set filetype=jinja
+" augroup END
 
 map  :Lodgeit<CR> 
-
 
 " BEGIN syntax/m4.vim
 let g:m4_default_quote="`,'" 
 let g:m4_default_comment='#' 
 " END syntax/m4.vim
 "
-" BEGIN pearofducks/ansible-vim
-let g:ansible_name_highlight = 'b'
-let g:ansible_extra_keywords_highlight = 1
-let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-" END pearofducks/ansible-vim
 
 " BEGIN vim-markdown
 let g:vim_markdown_folding_disabled=1
@@ -192,7 +194,7 @@ endif
 " END Shougo/neocomplcache
 
 " BEGIN Syntastic configuration
-if join(g:vundle#bundles) =~ 'syntastic'
+if join(g:vundle#bundles) =~# 'syntastic'
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
@@ -214,7 +216,8 @@ if join(g:vundle#bundles) =~ 'syntastic'
     let g:syntastic_vim_checkers = ['vimlint']
     let g:syntastic_sh_checkers = ['shellcheck']
     let g:syntastic_sh_shellcheck_args = "-s bash"
-    let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
+    let g:my_syntastic_quiet_messages = ['SC2148', 'SC1090', 'SC2039', 'SC2112']
+    let g:syntastic_quiet_messages = { 'regex': g:my_syntastic_quiet_messages }
     let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
     " Obvious security issue to resolve
     " let g:syntastic_enable_perl_checker = 1
@@ -227,12 +230,14 @@ endif " End Syntastic configuration
 let g:vim_json_syntax_conceal = 0
 
 " pearofducks/ansible-vim
-let g:ansible_attribute_highlight = "ob"
-let g:ansible_name_highlight = 'd'
+let g:ansible_attribute_highlight = 'ob'
+let g:ansible_extra_keywords_highlight = 1
+let g:ansible_extra_syntaxes = 'sh.vim ruby.vim'
+let g:ansible_name_highlight = 'b'
 let g:polyglot_disabled = ['ansible']
 
 " indentLine - https://github.com/Yggdroot/indentLine
-if join(g:vundle#bundles) =~ 'indentLine'
+if join(g:vundle#bundles) =~# 'indentLine'
     " Vim
     let g:indentLine_color_term = 239
 
@@ -244,18 +249,19 @@ if join(g:vundle#bundles) =~ 'indentLine'
     let g:indentLine_color_dark = 1 " (default: 2)
 endif
 
-
 " Airline
-if join(g:vundle#bundles) =~ 'vim-airline'
+if join(g:vundle#bundles) =~# 'vim-airline'
     let g:airline#extensions#syntastic#enabled = 1
     let g:airline#extensions#tabline#enabled = 1
 endif
 
 " Clang
-let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+if has("macunix")
+    let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+endif
 
 " Automatic GdbMgr Invocation:
-if join(g:vundle#bundles) =~ 'gdbmgr'
+if join(g:vundle#bundles) =~# 'gdbmgr'
     if has("unix") && executable("file") && !&l:binary
         if executable(expand("<afile>"))
             let s:file_type= system("file ".expand("<afile>"))

@@ -1,5 +1,6 @@
 *.dirstamp
 *.swp
+*.swo
 *bak
 .DS_Store
 .netrwhist
