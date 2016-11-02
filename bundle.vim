@@ -115,6 +115,7 @@ Plugin 'tpope/vim-projectionist'
 Plugin 'syngan/vim-vimlint'
 Plugin 'ynkdir/vim-vimlparser'
 Plugin 'vim-jekyll'
+Plugin 'vim-scripts/linebreakat.vim'
 
 " Both required for Markdown
 Plugin 'godlygeek/tabular'

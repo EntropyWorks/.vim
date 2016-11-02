@@ -16,10 +16,13 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-if isdirectory( expand('~/.vim/bundle/Vundle.vim') )
-if has("autocmd")
-    runtime bundle.vim
+" if exists('g:loaded_syntastic_plugin') || &compatible
+if ! has("autocmd")
+    finish
 endif
+
+if isdirectory( expand('~/.vim/bundle/Vundle.vim') )
+    runtime bundle.vim
 endif
 
 if filereadable( expand('~/.vim/bundle/vim-colors-solarized/README.mkd') )
@@ -79,13 +82,12 @@ set nostartofline
 "set cino=(4
 "set cino+=(0
 set mps+=<:>
-if has("autocmd")
-    " Recognize yy files as Yacc
-    autocmd BufRead,BufNewFile *.yy setfiletype yacc
-    " autocmd BufRead *.test set syntax=mysql_test     
-    " When editing a file, always jump to the last cursor position
-    autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
-endif
+"
+" Recognize yy files as Yacc
+autocmd BufRead,BufNewFile *.yy setfiletype yacc
+" autocmd BufRead *.test set syntax=mysql_test     
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
 
 set path=**2
 set mousehide           " Hide the mouse when typing text
@@ -97,100 +99,96 @@ set visualbell t_vb=
 
 map  :Lodgeit<CR> 
 
+" BEGIN syntax/m4.vim
+let g:m4_default_quote="`,'" 
+let g:m4_default_comment='#' 
+" END syntax/m4.vim
+"
+" BEGIN pearofducks/ansible-vim
+let g:ansible_name_highlight = 'b'
+let g:ansible_extra_keywords_highlight = 1
+let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+" END pearofducks/ansible-vim
 
-if has("autocmd")
-    " BEGIN syntax/m4.vim
-    let g:m4_default_quote="`,'" 
-    let g:m4_default_comment='#' 
-    " END syntax/m4.vim
-    "
-    " BEGIN pearofducks/ansible-vim
-    let g:ansible_name_highlight = 'b'
-    let g:ansible_extra_keywords_highlight = 1
-    let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-    " END pearofducks/ansible-vim
+" BEGIN vim-markdown
+let g:vim_markdown_folding_disabled=1
+" END vim-markdown
 
-    " BEGIN vim-markdown
-    let g:vim_markdown_folding_disabled=1
-    " END vim-markdown
+" BEGIN Syntastic configuration
+if join(g:vundle#bundles) =~ 'syntastic'
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
 
-    " BEGIN Syntastic configuration
-    if exists(':SyntasticCheck')
-        "set statusline+=%#warningmsg#
-        "set statusline+=%{SyntasticStatuslineFlag()}
-        "set statusline+=%*
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_auto_jump = 1
+    "  Extras
+    let g:syntastic_yaml_checkers = ['pyyaml']
+    let g:syntastic_cfg_checkers = ['cfg']
+    let g:syntastic_dosini_checkers = ['dosini']
+    let g:syntastic_make_checkers = ['gnumake']
+    let g:syntastic_javascript_checkers = ['jslint']
+    let g:syntastic_json_checkers = ['jsonlint']
+    let g:syntastic_gitcommit_checkers = ['language_check']
+    let g:syntastic_svn_checkers = ['language_check']
+    let g:syntastic_vim_checkers = ['vimlint']
+    let g:syntastic_sh_checkers = ['shellcheck']
+    let g:syntastic_sh_shellcheck_args = "-s bash"
+    let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
+    let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+    " Obvious security issue to resolve
+    " let g:syntastic_enable_perl_checker = 1
 
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 1
-        let g:syntastic_auto_jump = 1
-        "  Extras
-        let g:syntastic_yaml_checkers = ['pyyaml']
-        let g:syntastic_cfg_checkers = ['cfg']
-        let g:syntastic_dosini_checkers = ['dosini']
-        let g:syntastic_make_checkers = ['gnumake']
-        let g:syntastic_javascript_checkers = ['jslint']
-        let g:syntastic_json_checkers = ['jsonlint']
-        let g:syntastic_gitcommit_checkers = ['language_check']
-        let g:syntastic_svn_checkers = ['language_check']
-        let g:syntastic_vim_checkers = ['vimlint']
-        let g:syntastic_sh_checkers = ['shellcheck']
-        let g:syntastic_sh_shellcheck_args = "-s bash"
-        let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1090' }
-        let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-        " Obvious security issue to resolve
-        " let g:syntastic_enable_perl_checker = 1
+    " Run all checkers
+    let g:syntastic_aggregate_errors = 1
+endif " End Syntastic configuration
+"
+" elzr-vim
+let g:vim_json_syntax_conceal = 0
 
-        " Run all checkers
-        let g:syntastic_aggregate_errors = 1
-    endif
-    " End Syntastic configuration
-    "
-    " elzr-vim
-    let g:vim_json_syntax_conceal = 0
-     
-    " pearofducks/ansible-vim
-    let g:ansible_attribute_highlight = "ob"
-    let g:ansible_name_highlight = 'd'
-    let g:polyglot_disabled = ['ansible']
+" pearofducks/ansible-vim
+let g:ansible_attribute_highlight = "ob"
+let g:ansible_name_highlight = 'd'
+let g:polyglot_disabled = ['ansible']
 
-    " indentLine - https://github.com/Yggdroot/indentLine
-    if exists(':IndentLinesToggle')
-        " Vim
-        let g:indentLine_color_term = 239
+" indentLine - https://github.com/Yggdroot/indentLine
+if join(g:vundle#bundles) =~ 'indentLine'
+    " Vim
+    let g:indentLine_color_term = 239
 
-        " GVim
-        let g:indentLine_color_gui = '#A4E57E'
+    " GVim
+    let g:indentLine_color_gui = '#A4E57E'
 
-        " none X terminal
-        let g:indentLine_color_tty_light = 7 " (default: 4)
-        let g:indentLine_color_dark = 1 " (default: 2)
-    endif
+    " none X terminal
+    let g:indentLine_color_tty_light = 7 " (default: 4)
+    let g:indentLine_color_dark = 1 " (default: 2)
+endif
 
-      
-    " Airline
-    if exists(':AirlineTheme')
-        let g:airline#extensions#syntastic#enabled = 1
-        let g:airline#extensions#tabline#enabled = 1
-    endif
+" Airline
+if join(g:vundle#bundles) =~ 'vim-airline'
+    let g:airline#extensions#syntastic#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+endif
 
-    " Clang
-    let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-     
-    " Automatic GdbMgr Invocation:
-    if exists(':GdbMgr')
-        if has("unix") && executable("file") && !&l:binary
-            if executable(expand("<afile>"))
-                let file_type= system("file ".expand("<afile>"))
-                if file_type =~ '\<executable\>' && file_type !~ '\<shell\>' && file_type !~ '\<script\>'
-                    call gdbmgr#GdbMgrInit(expand("<afile>"))
-                endif
-                unlet file_type
+" Clang
+let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+
+" Automatic GdbMgr Invocation:
+if join(g:vundle#bundles) =~ 'gdbmgr'
+    if has("unix") && executable("file") && !&l:binary
+        if executable(expand("<afile>"))
+            let s:file_type= system("file ".expand("<afile>"))
+            if s:file_type =~ '\<executable\>' && s:file_type !~ '\<shell\>' && s:file_type !~ '\<script\>'
+                call gdbmgr#GdbMgrInit(expand("<afile>"))
             endif
+            unlet s:file_type
         endif
     endif
-endif " has("autocmd")
+endif
+
 set nofoldenable    " disable folding
 
 " Mix opinion on
