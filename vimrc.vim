@@ -3,8 +3,8 @@ set all&
 set nocompatible  " be iMproved, required for Vundle
 
 " Default tab spacing
-set autoindent    " always set autoindenting on
-" set copyindent    " copy the previous indentation on autoindenting
+" set autoindent    " always set autoindenting on
+set copyindent    " copy the previous indentation on autoindenting
 " set smartindent
 "
 " By default don't wrap
@@ -216,9 +216,11 @@ if join(g:vundle#bundles) =~# 'syntastic'
     let g:syntastic_vim_checkers = ['vimlint']
     let g:syntastic_sh_checkers = ['shellcheck']
     let g:syntastic_sh_shellcheck_args = "-s bash"
-    let g:my_syntastic_quiet_messages = ['SC2148', 'SC1090', 'SC2039', 'SC2112']
+    let g:my_syntastic_quiet_messages = ['pylint', 'flake8', 'SC2139', 'SC2148', 'SC1090', 'SC2039', 'SC2112']
     let g:syntastic_quiet_messages = { 'regex': g:my_syntastic_quiet_messages }
     let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+    let g:syntastic_python_checkers = ['flake8']
+    let g:syntastic_python_flake8_args='--ignore=E501,E225'
     " Obvious security issue to resolve
     " let g:syntastic_enable_perl_checker = 1
 
